@@ -1,3 +1,5 @@
 .env
+.task/
 .dev/
 .tmp/
+bin/
