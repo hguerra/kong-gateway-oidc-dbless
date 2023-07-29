@@ -19,3 +19,8 @@ services:
           scope: "email"
           logout_path: "/logout"
           session_secret: "${SESSION_SECRET}"
+
+      - name: domain-restriction
+        config:
+          allow:
+            - "gmail.com"

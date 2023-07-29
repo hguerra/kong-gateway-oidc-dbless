@@ -21,7 +21,7 @@ services:
       # KONG_PROXY_ERROR_LOG: /dev/stderr
       # KONG_ANONYMOUS_REPORTS: false
       # KONG_DECLARATIVE_CONFIG: '/opt/kong/kong.yaml'
-      # KONG_PLUGINS: bundled,oidc
+      KONG_PLUGINS: bundled,oidc,domain-restriction
       KONG_LOG_LEVEL: info
       KONG_X_SESSION_NAME: _atendimento_session
       KONG_X_SESSION_COMPRESSOR: zlib

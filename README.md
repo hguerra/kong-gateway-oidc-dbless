@@ -1,10 +1,8 @@
 # Kong DB-less Example with OIDC
 
-https://github.com/revomatico/kong-oidc
+The purpose of this repository is to configure Kong with OIDC (OpenID Connect). In this scenario, the login is performed using Google.
 
-https://github.com/revomatico/docker-kong-oidc
-
-https://docs.konghq.com/gateway/latest/kong-plugins/authentication/oidc/google/
+A plugin was also built to block invalid domains. For instance, imagine that your company has a Google Workspace domain. You could authenticate with Google, restricting access to only the email domain of your company, for example, `myemail@example.com`.
 
 
 ## Install
@@ -23,3 +21,12 @@ task config
 
 task up
 ```
+
+
+## Reference
+
+https://github.com/revomatico/kong-oidc
+
+https://github.com/revomatico/docker-kong-oidc
+
+https://docs.konghq.com/gateway/latest/kong-plugins/authentication/oidc/google/

@@ -34,6 +34,7 @@ ENV KONG_ADMIN_GUI_ERROR_LOG="/dev/stderr"
 ENV KONG_PORTAL_API_ERROR_LOG="/dev/stderr"
 ENV KONG_ANONYMOUS_REPORTS="false"
 ENV KONG_LOG_LEVEL="error"
+ENV KONG_PLUGINS="bundled,oidc"
 ENV KONG_DECLARATIVE_CONFIG="/opt/kong/kong.yaml"
 
 
@@ -41,5 +42,9 @@ ENV KONG_DECLARATIVE_CONFIG="/opt/kong/kong.yaml"
 # STAGE-2
 # Build kong
 FROM kong-base
+
+USER root
+
+COPY plugins/domain-restriction /usr/local/share/lua/5.1/kong/plugins/domain-restriction
 
 USER kong
