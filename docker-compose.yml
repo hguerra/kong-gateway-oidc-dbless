@@ -23,7 +23,7 @@ services:
       # KONG_DECLARATIVE_CONFIG: '/opt/kong/kong.yaml'
       # KONG_PLUGINS: bundled,oidc
       KONG_LOG_LEVEL: info
-      KONG_X_SESSION_NAME: _ctbz_session
+      KONG_X_SESSION_NAME: _atendimento_session
       KONG_X_SESSION_COMPRESSOR: zlib
     ports:
       - '8080:8080'
