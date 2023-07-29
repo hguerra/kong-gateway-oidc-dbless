@@ -15,5 +15,7 @@ This repo uses [Task](https://taskfile.dev/). Task is a task runner / build tool
 ## Development
 
 ```
+cp .env.example .env
+
 task download
 ```

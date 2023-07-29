@@ -3,3 +3,4 @@
 .dev/
 .tmp/
 bin/
+kong.yaml
