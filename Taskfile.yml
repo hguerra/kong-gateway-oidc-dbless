@@ -23,7 +23,7 @@ tasks:
     cmds:
       - task: clean
       - task: config
-      - docker build -t heitorcarneiro/kong:3.3.0-1-alpine .
+      - docker build -t heitorcarneiro/docker-kong-oidc:3.3.0-1-alpine .
 
   up:
     cmds:

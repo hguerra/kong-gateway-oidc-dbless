@@ -8,21 +8,23 @@ services:
   # http://localhost:8080/
   # http://localhost:8001/
   kong:
-    image: cristianchiru/docker-kong-oidc:3.3.0-1
+    image: heitorcarneiro/docker-kong-oidc:3.3.0-1-alpine
     container_name: kong_gateway
     environment:
-      KONG_DATABASE: 'off'
-      KONG_PROXY_LISTEN: '0.0.0.0:8080'
-      KONG_ADMIN_LISTEN: '0.0.0.0:8001'
-      KONG_STATUS_LISTEN: '0.0.0.0:8100'
-      KONG_ADMIN_ACCESS_LOG: 'off'
-      KONG_ADMIN_ERROR_LOG: /dev/stderr
-      KONG_PROXY_ACCESS_LOG: 'off'
-      KONG_PROXY_ERROR_LOG: /dev/stderr
-      KONG_ANONYMOUS_REPORTS: false
-      KONG_DECLARATIVE_CONFIG: '/opt/kong/kong.yaml'
-      KONG_PLUGINS: bundled,oidc
+      # KONG_DATABASE: 'off'
+      # KONG_PROXY_LISTEN: '0.0.0.0:8080'
+      # KONG_ADMIN_LISTEN: '0.0.0.0:8001'
+      # KONG_STATUS_LISTEN: '0.0.0.0:8100'
+      # KONG_ADMIN_ACCESS_LOG: 'off'
+      # KONG_ADMIN_ERROR_LOG: /dev/stderr
+      # KONG_PROXY_ACCESS_LOG: 'off'
+      # KONG_PROXY_ERROR_LOG: /dev/stderr
+      # KONG_ANONYMOUS_REPORTS: false
+      # KONG_DECLARATIVE_CONFIG: '/opt/kong/kong.yaml'
+      # KONG_PLUGINS: bundled,oidc
       KONG_LOG_LEVEL: info
+      KONG_X_SESSION_NAME: _ctbz_session
+      KONG_X_SESSION_COMPRESSOR: zlib
     ports:
       - '8080:8080'
       - '8001:8001'
