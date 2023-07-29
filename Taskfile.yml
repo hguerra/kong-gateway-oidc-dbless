@@ -23,7 +23,7 @@ tasks:
     cmds:
       - task: clean
       - task: config
-      - docker build -t heitorcarneiro/kong:3.3.0-ubuntu .
+      - docker build -t heitorcarneiro/kong:3.3.0-1-alpine .
 
   up:
     cmds:
@@ -39,11 +39,3 @@ tasks:
       - task: down
       - task: build
       - task: up
-
-  test:
-    cmds:
-      - curl -i --location --request GET "http://localhost:8080"
-
-  test_auth:
-    cmds:
-      - curl -i --location --request GET "http://localhost:8080" --header "my_header_key:test"
