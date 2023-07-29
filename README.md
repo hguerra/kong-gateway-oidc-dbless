@@ -18,4 +18,8 @@ This repo uses [Task](https://taskfile.dev/). Task is a task runner / build tool
 cp .env.example .env
 
 task download
+
+task config
+
+task up
 ```
