@@ -1,0 +1,21 @@
+_format_version: '3.0'
+services:
+  - name: mock-service-1
+    url: "https://headers.4tools.net"
+    routes:
+      - name: mock-url-1
+        protocols:
+          - "http"
+          - "https"
+        paths:
+          - /
+    plugins:
+      - name: oidc
+        config:
+          client_id: "XXX.apps.googleusercontent.com"
+          client_secret: "XXX"
+          realm: "kong"
+          discovery: "https://accounts.google.com/.well-known/openid-configuration"
+          scope: "email"
+          logout_path: "/logout"
+          session_secret: "RkNmUzJmNVJlWVJ0ayNARFhTanpRdmRHJEJYI2Z1eng=" #base64
