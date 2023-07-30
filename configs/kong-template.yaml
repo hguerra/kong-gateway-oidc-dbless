@@ -22,5 +22,7 @@ services:
 
       - name: domain-restriction
         config:
+          header_name: "X-ID-Token"
+          cookie_name: "_atendimento_session"
           allow:
             - "gmail.com"

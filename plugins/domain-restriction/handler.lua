@@ -1,5 +1,6 @@
 local json = require "cjson"
 local pl_stringx = require "pl.stringx"
+local ck = require "resty.cookie"
 
 
 local kong = kong
@@ -34,6 +35,28 @@ local function do_exit(status, message)
 end
 
 
+local function logout(cookie_name)
+  local cookie, err = ck:new()
+  if not cookie then
+    log.warn(err)
+    return
+  end
+
+  local ok, err = cookie:set({
+    key = cookie_name,
+    value = "",
+    path = "/",
+    secure = false,
+    httponly = true,
+    max_age = -1,
+  })
+
+  if not ok then
+    log.warn(err)
+  end
+end
+
+
 local function match_domain(list, email)
   for _, domain in ipairs(list) do
     if endswith(email, domain) then
@@ -48,8 +71,10 @@ local function do_restrict(conf)
   local headers = kong.request.get_headers()
   local header_name = conf.header_name
   local header_value = headers[header_name]
+  local cookie_name = conf.cookie_name
 
-  if not header_value or header_value == ""  then
+  if not header_value or header_value == "" then
+    logout(cookie_name)
     return do_exit(403, "Cannot identify the client token")
   end
 
@@ -58,10 +83,12 @@ local function do_restrict(conf)
   end)
 
   if not ok then
+    logout(cookie_name)
     return do_exit(403, "Invalid token")
   end
 
   if not claims or not claims.email or type(claims.email) ~= "string" then
+    logout(cookie_name)
     return do_exit(403, "Invalid token")
   end
 
@@ -70,6 +97,7 @@ local function do_restrict(conf)
   if not isempty(deny) then
     local blocked = match_domain(deny, claims.email)
     if blocked then
+      logout(cookie_name)
       return do_exit()
     end
   end
@@ -79,6 +107,7 @@ local function do_restrict(conf)
   if not isempty(allow) then
     local allowed = match_domain(allow, claims.email)
     if not allowed then
+      logout(cookie_name)
       return do_exit(conf.status, conf.message)
     end
   end
@@ -89,10 +118,8 @@ function DomainRestrictionHandler:access(conf)
   return do_restrict(conf)
 end
 
-
 function DomainRestrictionHandler:preread(conf)
   return do_restrict(conf)
 end
-
 
 return DomainRestrictionHandler

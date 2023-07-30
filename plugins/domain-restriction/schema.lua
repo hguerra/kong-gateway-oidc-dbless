@@ -32,6 +32,14 @@ return {
             header_name = {
               type = "string",
               default = "X-ID-Token",
+              required = false,
+            },
+          },
+          {
+            cookie_name = {
+              type = "string",
+              default = "oidc_session",
+              required = false,
             },
           },
         },
