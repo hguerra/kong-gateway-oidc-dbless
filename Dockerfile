@@ -45,6 +45,6 @@ FROM kong-base
 
 USER root
 
-COPY plugins/domain-restriction /usr/local/share/lua/5.1/kong/plugins/domain-restriction
+COPY kong/plugins/domain-restriction /usr/local/share/lua/5.1/kong/plugins/domain-restriction
 
 USER kong

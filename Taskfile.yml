@@ -27,8 +27,7 @@ tasks:
 
   up:
     cmds:
-      - docker compose up -d
-      - docker compose logs -f kong
+      - docker compose up
 
   down:
     cmds:
@@ -39,3 +38,11 @@ tasks:
       - task: down
       - task: build
       - task: up
+
+  test:
+    cmds:
+      - busted spec/domain-restriction
+
+  lint:
+    cmds:
+      - luacheck kong/

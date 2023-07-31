@@ -2,7 +2,9 @@
   "Lua.runtime.version": "LuaJIT",
   "Lua.diagnostics.globals": [
     "ngx",
-    "kong"
+    "kong",
+    "describe",
+    "it"
   ],
   "Lua.workspace.library": [
     "${3rd}/OpenResty/library"
